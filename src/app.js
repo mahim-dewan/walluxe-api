@@ -5,8 +5,9 @@ const express = require("express");
 const cors = require("cors");
 
 const connectDB = require("./config/db");
-const subscribeRoutes = require("./routes/subscribe.route");
 const errorHandler = require("./middlewares/error.middleware");
+const subscribesRouter = require("./routes/subscribes.route");
+const projectsRouter = require("./routes/projects.route");
 
 const app = express();
 
@@ -24,7 +25,8 @@ app.get("/api", async (req, res) => {
   );
 });
 
-app.use("/api/subscribe", subscribeRoutes);
+app.use("/api/subscribes", subscribesRouter);
+app.use("/api/projects", projectsRouter);
 
 // 404 Handler
 app.use((req, res) => {

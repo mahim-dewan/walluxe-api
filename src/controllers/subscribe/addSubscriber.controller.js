@@ -9,12 +9,10 @@ const addSubscriber = async (req, res) => {
 
     // send res if email already exists
     if (exists)
-      res
-        .status(400)
-        .json({
-          status: "bad request",
-          message: "This email already has been subscribed",
-        });
+      res.status(400).json({
+        status: "bad request",
+        message: "This email already has been subscribed",
+      });
 
     const newAdded = await Subscriber.create({ name, email, image }); // create a new subscriber
 
@@ -25,7 +23,11 @@ const addSubscriber = async (req, res) => {
       data: newAdded,
     });
   } catch (err) {
-    res.status(400).json({ message: err?.message || "Something went wrong" });
+    // Send error response to client
+    res.status(400).json({
+      success: false,
+      message: err?.message || "Something went wrong",
+    });
   }
 };
 
