@@ -1,6 +1,7 @@
-const { Project } = require("../../models/projects.model");
+// controllers/project/createProject.controller.js
+const { Project } = require("../../models/project.model");
 
-const createProject = async (req, res) => {
+const createProject = async (req, res, next) => {
   try {
     // Destructure fields from request body
     const {
@@ -47,11 +48,7 @@ const createProject = async (req, res) => {
       data: createdProject,
     });
   } catch (err) {
-    // Send error response to client
-    res.status(400).json({
-      success: false,
-      message: err?.message || "Something went wrong",
-    });
+    next(err); // Pass to global error handler
   }
 };
 

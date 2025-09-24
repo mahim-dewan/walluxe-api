@@ -1,5 +1,6 @@
+// middlewares/error.middleware.js
 function errorHandler(err, req, res, next) {
-  console.error(err.stack);
+  console.error(err.stack, "gg");
 
   res.status(err.statusCode || 500).json({
     status: "error",

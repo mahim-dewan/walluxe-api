@@ -1,3 +1,4 @@
+// models/subscribe.model.js
 const { Schema, model } = require("mongoose");
 
 const subscriberSchema = new Schema(

@@ -1,6 +1,7 @@
-const { Project } = require("../../models/projects.model");
+// controllers/project/deleteProject.controller.js
+const { Project } = require("../../models/project.model");
 
-const deleteProject = async (req, res) => {
+const deleteProject = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -15,11 +16,7 @@ const deleteProject = async (req, res) => {
       data: deletedProject,
     });
   } catch (err) {
-    // Send error response to client
-    res.status(400).json({
-      success: false,
-      message: err?.message || "Something went wrong",
-    });
+    next(err); // Pass to global error handler
   }
 };
 

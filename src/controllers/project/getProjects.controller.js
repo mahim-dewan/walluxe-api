@@ -1,22 +1,18 @@
-const { Project } = require("../../models/projects.model");
-const { find } = require("../../models/subscribe.model");
+// controllers/project/getProjects.controller.js
+const { Project } = require("../../models/project.model");
 
 // Get All Projects
-const getAllProjects = async (req, res) => {
+const getAllProjects = async (req, res, next) => {
   try {
     const projects = await Project.find();
     res.json({ success: true, count: projects.length, data: projects });
   } catch (err) {
-    // Send error response to client
-    res.status(400).json({
-      success: false,
-      message: err?.message || "Something went wrong",
-    });
+    next(err); // Pass to global error handler
   }
 };
 
 // Get Single Project
-const getSingleProject = async (req, res) => {
+const getSingleProject = async (req, res, next) => {
   try {
     const { id } = req.params;
     const project = await Project.findById(id);
@@ -28,27 +24,20 @@ const getSingleProject = async (req, res) => {
     // send success response
     res.status(200).json({ success: true, data: project });
   } catch (err) {
-    // Send error response to client
-    res.status(400).json({
-      success: false,
-      message: err?.message || "Something went wrong",
-    });
+    next(err); // Pass to global error handler
   }
 };
 
 // Get Recent Project
-const getRecentProjects = async (req, res) => {
+const getRecentProjects = async (req, res, next) => {
   try {
-
     const projects = await Project.find().sort({ createdAt: -1 }).limit(5);
 
-    res.status(200).json({ success: true,count:projects.length, data: projects });
-
+    res
+      .status(200)
+      .json({ success: true, count: projects.length, data: projects });
   } catch (err) {
-    res.status(400).json({
-      success: false,
-      message: err?.message || "Something went wrong",
-    });
+   next(err); // Pass to global error handler
   }
 };
 

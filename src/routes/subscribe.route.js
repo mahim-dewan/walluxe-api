@@ -1,3 +1,4 @@
+// routes/subscribe.route.js
 const express = require("express");
 const subscribesRouter = express.Router();
 

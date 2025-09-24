@@ -1,6 +1,7 @@
-const { Project } = require("../../models/projects.model");
+// controllers/project/updateProject.controller.js
+const { Project } = require("../../models/project.model");
 
-const updateProject = async (req, res) => {
+const updateProject = async (req, res, next) => {
   try {
     const { id } = req.params;
     const updateData = req.body;
@@ -20,11 +21,7 @@ const updateProject = async (req, res) => {
       data: updatedProject,
     });
   } catch (err) {
-    // Send error response to client
-    res.status(400).json({
-      success: false,
-      message: err?.message || "Something went wrong",
-    });
+    next(err); // Pass to global error handler
   }
 };
 
