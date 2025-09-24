@@ -6,8 +6,13 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const errorHandler = require("./middlewares/error.middleware");
-const subscribesRouter = require("./routes/subscribes.route");
-const projectsRouter = require("./routes/projects.route");
+
+// all imported routes
+const subscribesRouter = require("./routes/subscribe.route");
+const projectsRouter = require("./routes/project.route");
+const teamMembersRouter = require("./routes/team.route");
+const serviceAreaRouter = require("./routes/serviceArea.route");
+const accordionRouter = require("./routes/accordion.route");
 
 const app = express();
 
@@ -27,6 +32,9 @@ app.get("/api", async (req, res) => {
 
 app.use("/api/subscribes", subscribesRouter);
 app.use("/api/projects", projectsRouter);
+app.use("/api/teams", teamMembersRouter);
+app.use("/api/serviceAreas", serviceAreaRouter);
+app.use("/api/accordions", accordionRouter);
 
 // 404 Handler
 app.use((req, res) => {
