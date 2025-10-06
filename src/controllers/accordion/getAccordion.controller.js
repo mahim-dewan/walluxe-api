@@ -5,7 +5,7 @@ const { Accordion } = require("../../models/accordion.model");
 const getAllAccordions = async (req, res, next) => {
   try {
     // Get accordions from mongoDB
-    const accordions = await Accordion.find().sort({ createdAt: -1 });
+    const accordions = await Accordion.find().sort({ createdAt: 1 });
 
     // Send success response to client
     return res.status(200).json({

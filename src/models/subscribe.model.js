@@ -12,10 +12,6 @@ const subscriberSchema = new Schema(
       required: [true, "Email is required"],
       unique: true,
     },
-    image: {
-      type: String,
-      required: true,
-    },
   },
   { timestamps: true }
 );

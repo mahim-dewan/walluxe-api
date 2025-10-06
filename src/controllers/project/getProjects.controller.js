@@ -5,7 +5,9 @@ const { Project } = require("../../models/project.model");
 const getAllProjects = async (req, res, next) => {
   try {
     const projects = await Project.find();
-    res.json({ success: true, count: projects.length, data: projects });
+    res
+      .status(200)
+      .json({ success: true, count: projects.length, data: projects });
   } catch (err) {
     next(err); // Pass to global error handler
   }
@@ -37,7 +39,7 @@ const getRecentProjects = async (req, res, next) => {
       .status(200)
       .json({ success: true, count: projects.length, data: projects });
   } catch (err) {
-   next(err); // Pass to global error handler
+    next(err); // Pass to global error handler
   }
 };
 

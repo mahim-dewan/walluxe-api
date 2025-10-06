@@ -3,7 +3,7 @@ const Subscriber = require("../../models/subscribe.model");
 
 const addSubscriber = async (req, res, next) => {
   try {
-    const { name, email, image } = req.body;
+    const { name, email } = req.body;
 
     // check, is email exists
     const exists = await Subscriber.findOne({ email });
@@ -11,17 +11,17 @@ const addSubscriber = async (req, res, next) => {
     // send res if email already exists
     if (exists) {
       return res.status(400).json({
-        status: "bad request",
-        message: "This email already has been subscribed",
+        success: false,
+        message: "You're already subscribed by this email.",
       });
     }
 
-    const newAdded = await Subscriber.create({ name, email, image }); // create a new subscriber
+    const newAdded = await Subscriber.create({ name, email }); // create a new subscriber
 
     // send success response
     res.status(201).json({
-      status: "success",
-      message: "Thank you for you subscription",
+      success: true,
+      message: "Thank you for your subscription",
       data: newAdded,
     });
   } catch (err) {

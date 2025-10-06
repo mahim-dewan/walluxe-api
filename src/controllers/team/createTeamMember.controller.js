@@ -6,12 +6,12 @@ const createTeamMember = async (req, res, next) => {
     const { name, designation, email, phone, image } = req.body;
 
     // Basic validation to ensure required fields are provided
-    if (!name || !designation || !email || !phone || !image)
-      res.status(400).json({
+    if (!name || !designation || !email || !phone || !image) {
+      return res.status(400).json({
         success: false,
         message: "Name, Designation, Email, Phone, Image are required",
       });
-
+    }
     const exists = await Team.findOne({ email });
 
     if (exists) {

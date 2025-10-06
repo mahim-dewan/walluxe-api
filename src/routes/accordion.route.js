@@ -1,3 +1,4 @@
+// routes/accordion.route.js
 const express = require("express")
 const accordionRouter = express.Router()
 
