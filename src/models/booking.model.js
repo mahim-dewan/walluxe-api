@@ -1,4 +1,6 @@
 const { Schema, models, model, default: mongoose } = require("mongoose");
+const { sendBookingMail } = require("../services/mail.service");
+const Package = require("./package.model");
 
 const bookingSchema = new Schema(
   {
@@ -48,6 +50,9 @@ const bookingSchema = new Schema(
       type: Number,
       required: [true, "Wall size is required"],
     },
+    workingDays: {
+      type: Number,
+    },
     costPerSF: {
       type: Number,
       required: [true, "cost per square foot is required"],
@@ -64,6 +69,30 @@ const bookingSchema = new Schema(
   },
   { timestamps: true }
 );
+
+bookingSchema.post("save", async (doc) => {
+  const package = await Package.findById(doc.packageId);
+
+  if (package) {
+    const booking = doc.toObject();
+
+    const data = {
+      name: booking?.name,
+      email: booking?.email,
+      startDate: booking?.startDate,
+      endDate: booking?.endDate,
+      wallSize: booking?.wallSize,
+      costTotal: booking?.costTotal,
+      _id: booking?._id,
+
+      title: package?.title,
+      price: package?.price
+
+    };
+    sendBookingMail(data);
+    console.log(data);
+  }
+});
 
 const Booking = models.bookings || model("bookings", bookingSchema);
 

@@ -16,7 +16,7 @@ const createBooking = async (req, res, next) => {
       endDate, // expecting "DD-MM-YYYY"
       wallSize,
       costPerSF,
-      costTotal
+      costTotal,
     } = req.body;
 
     // Convert string dates to Date objects
@@ -27,7 +27,7 @@ const createBooking = async (req, res, next) => {
     const end = new Date(eYear, eMonth - 1, eDay);
 
     // Create booking
-    const newBooking = await Booking.create({
+    const newBooking = new Booking({
       packageId,
       name,
       email,
@@ -39,13 +39,15 @@ const createBooking = async (req, res, next) => {
       endDate: end,
       wallSize,
       costPerSF,
-      costTotal
+      costTotal,
     });
+
+    const createdBooking = await newBooking.save();
 
     res.status(201).json({
       success: true,
       message: "Booking created successfully",
-      data: newBooking,
+      data: createdBooking,
     });
   } catch (err) {
     next(err); // pass to global error handler

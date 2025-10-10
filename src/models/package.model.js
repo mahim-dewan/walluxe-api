@@ -27,7 +27,7 @@ const packageSchema = new Schema(
     currency: {
       type: String,
       trim: true,
-      default: "USD",
+      default: "BDT",
     },
     category: {
       type: String,
