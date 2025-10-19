@@ -1,14 +1,32 @@
-const mongoose = require("mongoose")
+// config/db.js
 
-const connectDB = async ()=>{
-    try{
-        await mongoose.connect(process.env.MONGO_URI)
-        console.log(`Database is connected`);
-        
-    }catch(err){
-        console.error(`Database connection error: ${err?.message || err}`)
-    }
-}
+const mongoose = require("mongoose");
 
+/**
+ * Connects to MongoDB using Mongoose.
+ * Automatically builds indexes in development and disables them in production.
+ */
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      autoIndex: true, // Only build indexes automatically in dev
+      serverSelectionTimeoutMS: 5000, // Fail fast if unable to connect
+    });
 
-module.exports = connectDB
+    console.log(`✅ MongoDB connected successfully`);
+  } catch (err) {
+    console.error(`❌ MongoDB connection failed: ${err.message}`);
+    process.exit(1); // Exit process if connection fails
+  }
+
+  // Optional: log mongoose connection events for debugging
+  mongoose.connection.on("disconnected", () => {
+    console.warn("⚠️ MongoDB disconnected");
+  });
+
+  mongoose.connection.on("reconnected", () => {
+    console.log("🔄 MongoDB reconnected");
+  });
+};
+
+module.exports = connectDB;

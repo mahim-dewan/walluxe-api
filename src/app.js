@@ -15,23 +15,28 @@ const serviceAreaRouter = require("./routes/serviceArea.route");
 const accordionRouter = require("./routes/accordion.route");
 const packageRouter = require("./routes/package.route");
 const bookingRouter = require("./routes/booking.route");
+const paymentRoute = require("./routes/payment.route");
 
 const app = express();
 
-// Middlewares
+// -------------------- Middlewares -------------------- //
+app.use(express.urlencoded({ extended: true })); // ✅ for form data
 app.use(express.json());
 app.use(cors());
 
-// Database connection
+// -------------------- Database -------------------- //
 connectDB();
 
-// Routes
+// -------------------- Routes -------------------- //
+
+// API Welcome route
 app.get("/api", async (req, res) => {
   res.send(
     "<h1 style='color:green; text-align:center ; margin-top:100px; font-family:arial' >Welcome to the Walluxe REST API</h1>"
   );
 });
 
+// Modular API routes
 app.use("/api/subscribes", subscribesRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/teams", teamMembersRouter);
@@ -39,13 +44,14 @@ app.use("/api/serviceAreas", serviceAreaRouter);
 app.use("/api/accordions", accordionRouter);
 app.use("/api/packages", packageRouter);
 app.use("/api/bookings", bookingRouter);
+app.use("/api/payments", paymentRoute);
 
-// 404 Handler
+// -------------------- 404 Handler -------------------- //
 app.use((req, res) => {
   res.status(404).json({ message: "Page not found" });
 });
 
-// ----- Centralized Error Handler -----
+// -------------------- Centralized Error Handler -------------------- //
 app.use(errorHandler);
 
 module.exports = app;
