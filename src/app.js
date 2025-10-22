@@ -16,6 +16,7 @@ const accordionRouter = require("./routes/accordion.route");
 const packageRouter = require("./routes/package.route");
 const bookingRouter = require("./routes/booking.route");
 const paymentRoute = require("./routes/payment.route");
+const contactRouter = require("./routes/contact.route");
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.use("/api/accordions", accordionRouter);
 app.use("/api/packages", packageRouter);
 app.use("/api/bookings", bookingRouter);
 app.use("/api/payments", paymentRoute);
+app.use("/api/contacts", contactRouter);
 
 // -------------------- 404 Handler -------------------- //
 app.use((req, res) => {

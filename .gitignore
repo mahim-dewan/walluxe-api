@@ -13,9 +13,6 @@ pnpm-debug.log*
 .env
 .env.*.local
 
-# Readme file
-README.md
-
 # Runtime data
 pids
 *.pid

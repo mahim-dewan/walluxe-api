@@ -101,7 +101,33 @@ const sendPaymentInvoiceMail = async (data) => {
   }
 };
 
+// Contact message to admin
+const sendContactMessage = async (data) => {
+  try {
+    const mailOptions = {
+      from: `"Customer Message" <${process.env.SMTP_USER}>`,
+      to: process.env.ADMIN_EMAIL,
+      subject: "Walluxe received a message from customer",
+      html: `
+     <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6;">
+        <h2>Message from ${data?.name}</h2>
+        <p><strong>Email:</strong> ${data?.email}</p>
+        <p><strong>Phone:</strong> ${data?.phone || "Empty"}</p>
+        <p><strong>Message:</strong> ${data?.message}</p>
+      </div>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    console.log(`📩 Admin mail sent to ${data.email}`);
+  } catch (err) {
+    console.error("❌ Email sending failed:", err);
+  }
+};
+
 module.exports = {
   sendBookingMail,
   sendPaymentInvoiceMail,
+  sendContactMessage
 };
