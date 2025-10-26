@@ -52,7 +52,7 @@ A simple REST API built with Node.js, Express, and MongoDB for walluxe project. 
 
 ##### 1. Clone the repo  
 ```bash
-    git clone https://github.com/mahim-dewan/walluxe-backend.git
+git clone https://github.com/mahim-dewan/walluxe-backend.git
 ```
 ##### 2. Install the dependencies
 ```bash
@@ -60,9 +60,23 @@ npm install
 ```
 ##### 3. Create .env file
 ```env
-PORT=5000
+PORT= 5000
 
-MONGO_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database-name>
+MONGO_URI= mongodb+srv://<username>:<password>@<cluster-url>/<database-name>
+
+BASE_URL = "http://localhost:4000/api"
+
+DOMAIN = "http://localhost:3000/" (frontend base url)
+
+
+SMTP_USER = "example@gmail.com"
+SMTP_PASS = "example#sd23"
+
+ADMIN_EMAIL = "example@gmail.com"
+
+// For payment integrate
+STORE_ID = "example#5sd456s"
+STORE_PASS = "example#s564df6@ssl"
 ```
 ##### 4. Run the server 
 ```bash 

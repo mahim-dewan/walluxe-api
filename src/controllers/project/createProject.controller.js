@@ -8,20 +8,26 @@ const createProject = async (req, res, next) => {
       title,
       subtitle,
       description,
-      price,
       category,
-      location,
       images,
       features,
-      isPopular,
+      materials,
     } = req.body;
 
     // Basic validation to ensure required fields are provided
-    if (!title || !price || !images || !category) {
+    if (
+      !title ||
+      !subtitle ||
+      !(images.length > 2) ||
+      !category ||
+      !features ||
+      !materials ||
+      !description
+    ) {
       return res.status(400).json({
         success: false,
         message:
-          "Title, description, price, and at least one image are required.",
+          "Title, subtitle, description, category, features, materials, and at least 3 images are required.",
       });
     }
 
@@ -30,12 +36,10 @@ const createProject = async (req, res, next) => {
       title,
       subtitle,
       description,
-      price,
       category,
-      location,
       images,
       features,
-      isPopular,
+      materials,
     });
 
     // Save the new Project to mongoDB

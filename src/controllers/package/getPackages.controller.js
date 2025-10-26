@@ -61,5 +61,4 @@ module.exports = {
   getsinglePackage,
   getFeaturePackages,
   getMediaPackages,
-  
 };

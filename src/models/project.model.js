@@ -5,44 +5,35 @@ const projectSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "Title is required"],
       trim: true,
     },
 
     subtitle: {
       type: String,
       trim: true,
+      required: [true, "Subtitle is required"],
     },
 
     description: {
       type: String,
       trim: true,
-    },
-
-    price: {
-      type: Number,
-      required: true,
-    },
-
-    currency: {
-      type: String,
-      default: "BDT",
+      required: [true, "Description is required"],
     },
 
     category: {
       type: String,
       enum: ["Feature Wall", "Media Wall"],
-      required: true,
+      required: [true, "Category is required"],
     },
 
-    location: {
-      type: String,
-      trim: true,
-    },
+    images: [
+      { type: String, required: [true, "Minimum 3 images are required"] },
+    ],
 
-    images: [{ type: String, required: true }],
+    features: [{ type: String, required: [true, "Features are required"] }],
 
-    features: [{ type: String }],
+    materials: [{ type: String, required: [true, "Features are required"] }],
 
     isPopular: {
       type: Boolean,

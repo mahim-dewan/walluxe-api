@@ -13,7 +13,7 @@ const {
 
 packageRouter.post("/", createPackage);
 packageRouter.get("/", getAllPackage);
-packageRouter.get("/:id", getsinglePackage);
 packageRouter.get("/feature-walls", getFeaturePackages);
+packageRouter.get("/:id", getsinglePackage);
 
 module.exports = packageRouter;
