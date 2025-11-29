@@ -1,64 +1,95 @@
-
 # 📩 Walluxe REST API
-A simple REST API built with Node.js, Express, and MongoDB for walluxe project. Basically this is a media wall and feature wall installation service platform.
 
-### 🚀 Features
+A scalable, secure, and production-ready **RESTful API** built with **Node.js, Express & MongoDB** for the **Walluxe – Media & Feature Wall Installation Service Platform**.  
+This backend handles **projects, packages, bookings, payments, teams, service areas, subscriptions, and customer communications**.
 
-    Project API :
-        - Create project
-        - Get all projects
-        - Get single project
-        - Get recent projects
-        - Update project
-        - Delete project
+---
 
-    Team API :
-        - Create team member
-        - Get team members
-        - Get single team member
-        - Update team member 
-        - Delete team member
-
-    Service Area API :
-        - Create service area
-        - Get service areas
-        - Get single service area
-        - Update service area
-        - Delete service area
-
-    Accordion API :
-        - Create accordion
-        - Get all accordion
-        - Get single accordion
-        - Update accordion
-        - Delete accordion
-
-    Subscribe API :
-        - Add new subscriber
-        - Get all subscriber
-
-    Payment API :
-        - Init payment
-        - Success payment
-        - fail payment
-        - cancel   payment
-
-    Contact API :
-        - create message
+## 📌 Table of Contents
+- Features
+- Tech Stack
+- Folder Architecture
+- Installation & Environment Variables
+- API Endpoints
 
 
+---
+
+## 🚀 Features
+
+- ✅ Project Management (CRUD)
+- ✅ Team Member Management
+- ✅ Service Area Management
+- ✅ Wall Packages & Categories
+- ✅ Booking System
+- ✅ Secure Payment Integration
+- ✅ Newsletter Subscription
+- ✅ Contact & Inquiry System
+- ✅ Modular REST API Architecture
+- ✅ Centralized Error Handling
+- ✅ Environment-based Configuration
+
+---
+
+## 🛠 Tech Stack
+
+**Backend**
+- Node.js
+- Express.js
+
+**Database**
+- MongoDB
+- Mongoose
+
+**Utilities**
+- Nodemailer (SMTP)
+- SSLCommerz / Payment Gateway
+- dotenv
+- CORS
+- Morgan
+
+**Deployment**
+- Vercel / Render / VPS
+
+---
+
+## 🧱 Project Architecture
+
+```bash
+walluxe-backend/
+│── package.json
+│── package-lock.json
+│── .env
+│── .gitignore
+│── README.md
+│
+│── src/
+│   │── config/
+│   │── controllers/
+│   │── models/
+│   │── routes/
+│   │── middlewares/
+│   │── services/
+│   │── app.js
+│   │── server.js
+
+```
 
 ### ⚙️ Installation
 
 ##### 1. Clone the repo  
 ```bash
-git clone https://github.com/mahim-dewan/walluxe-backend.git
+git clone https://github.com/mahim-dewan/walluxe-api.git
 ```
 ##### 2. Install the dependencies
 ```bash
+cd walluxe-api
+```
+##### 3. Install the dependencies
+```bash
 npm install
 ```
-##### 3. Create .env file
+##### 4. Create .env file
 ```env
 PORT= 5000
 
@@ -74,11 +105,11 @@ SMTP_PASS = "example#sd23"
 
 ADMIN_EMAIL = "example@gmail.com"
 
-// For payment integrate
+// For SSLCommerz payment integrate
 STORE_ID = "example#5sd456s"
 STORE_PASS = "example#s564df6@ssl"
 ```
-##### 4. Run the server 
+##### 5. Run the server 
 ```bash 
 npm run dev (Development Mode)
 
@@ -88,14 +119,14 @@ npm start (Production Mode)
 ## 📡 API Endpoints
 
 ### 🌐 Base URL
-```http
+```bash
 http://localhost:4000/api
 ```
 
 ###  🔑 Subscribe
 
 #### Create Subscriber
-```http
+```bash
 POST: /subscribes
 
 {
@@ -105,7 +136,7 @@ POST: /subscribes
 ```
 
 #### Get All Subscribers
-```http
+```bash
 GET: /subscribes
 ```
 
@@ -113,7 +144,7 @@ GET: /subscribes
 
 #### Create Project
 
-```http
+```bash
 POST: /projects
 
 {
@@ -132,22 +163,22 @@ POST: /projects
 
 #### Get All Projects
 
-```http
+```bash
 GET: /projects
 ```
 #### Get Single Project
 
-```http
+```bash
 GET: /projects/id
 ```
 #### Get Recent Projects
 
-```http
+```bash
 GET: /projects/recent-projects
 ```
 
 #### Update Project 
-```http
+```bash
 PUT: /projects/id
 
 {
@@ -161,13 +192,13 @@ PUT: /projects/id
 ```
 
 #### Delete Project 
-```http
+```bash
 DELETE: /projects/id
 ```
 
 ###  🔑 Team Member
 #### Create team member 
-```http
+```bash
 POST: /teams
 
 {
@@ -180,17 +211,17 @@ POST: /teams
 ```
 
 #### Get team members 
-```http
+```bash
 GET: /teams 
 ```
 
 #### Get single team member 
-```http
+```bash
 GET: /teams/id
 ```
 
 #### Update a member 
-```http
+```bash
 PUT: /teams/id 
 
 {  
@@ -200,13 +231,13 @@ PUT: /teams/id
 ```
 
 #### Delete a member 
-```http
+```bash
 DELETE: /teams/id
 ```
 
 ###  🔑 Service Area
 #### Create a area 
-```http
+```bash
 POST: /serviceAreas
 
 {
@@ -215,17 +246,17 @@ POST: /serviceAreas
 ```
 
 #### Get all area 
-```http
+```bash
 GET: /serviceAreas
 ```
 
 #### Get single area 
-```http
+```bash
 GET: /serviceAreas/id
 ```
 
 #### Update a area 
-```http
+```bash
 PUT: /serviceAreas/id
 
 {
@@ -234,13 +265,13 @@ PUT: /serviceAreas/id
 ```
 
 #### Delete a area 
-```http
+```bash
 DELETE: /serviceAreas/id
 ```
 
 ###  🔑 Accordion
 #### Create a accordion
-```http
+```bash
 POST: /accordions
 
 {
@@ -250,17 +281,17 @@ POST: /accordions
 ```
 
 #### Get all accordions
-```http
+```bash
 GET: /accordions
 ```
 
 #### Get single accordion
-```http
+```bash
 GET: /accordions/id
 ```
 
 #### Update a accordion
-```http
+```bash
 PUT: /accordions/id
 
 {
@@ -269,13 +300,13 @@ PUT: /accordions/id
 ```
 
 #### Delete a accordion
-```http
+```bash
 DELETE: /accordions/id
 ```
 
 ###  🔑 Wall Package
 #### Create a package 
-```http
+```bash
 POST: /packages
 
 {
@@ -300,24 +331,24 @@ POST: /packages
 ```
 
 #### Get all packages
-```http
+```bash
 GET: /packages
 ```
 #### Get single package
-```http
+```bash
 GET: /packages/id
 ```
 #### Get feature wall packages
-```http
+```bash
 GET: /packages/feature-walls
 ```
 #### Get media wall packages
-```http
+```bash
 GET: /packages/media-walls
 ```
 ###  🔑 Booking
 #### Create booking
-```http
+```bash
 POST: /bookings
 
 {
@@ -336,17 +367,17 @@ POST: /bookings
 ```
 
 #### Get all booking 
-```http
+```bash
 GET: /bookings
 ```
 #### Get single booking 
-```http
+```bash
 GET: /bookings/id
 ```
 
 ###  🔑 Payment
 #### Initiate payment 
-```http
+```bash
 POST: /payments/init
 
 {
@@ -358,7 +389,7 @@ POST: /payments/init
 
 ### 🔑 Contact 
 #### Create contact message 
-```http
+```bash
 POST: /contacts
 
 {
@@ -368,3 +399,29 @@ POST: /contacts
     "message": "Write a message",
 }
 ```
+
+# 👤 Author
+
+**Mahim Dewan**     
+MERN Stack Developer  
+
+🔗 GitHub: https://github.com/mahim-dewan   
+🔗 Linkedin: https://www.linkedin.com/in/mahim-dewan79    
+📧 Email: mahimdewan79@gmail.com  
+🌱 Focus: Full-Stack Web Development (MERN), REST APIs, Scalable Backends  
+
+Passionate about building clean, scalable, and high-performance web applications with modern JavaScript technologies.
+
+
+## 🙏 Acknowledgments / Credits
+
+Special thanks to all the open-source tools, libraries, and community resources that made this project possible.
+
+- **Node.js & Express.js** for providing a fast and scalable backend framework  
+- **MongoDB & Mongoose** for flexible and efficient database management  
+- **Nodemailer & SMTP Services** for reliable email communication  
+- **SSLCommerz / Payment Gateway** for secure online payment processing  
+- **Open-source contributors & documentation authors** for continuous learning and support  
+
+This project is also inspired by real-world service-based business requirements and aims to follow modern industry best practices.
+
