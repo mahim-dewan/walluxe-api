@@ -10,7 +10,7 @@ const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
       autoIndex: true, // Only build indexes automatically in dev
-      serverSelectionTimeoutMS: 5000, // Fail fast if unable to connect
+      serverSelectionTimeoutMS: 10000, // Fail fast if unable to connect
     });
 
     console.log(`✅ MongoDB connected successfully`);
